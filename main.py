@@ -23,6 +23,9 @@ file_names = []
 for entry in os.scandir(folder_path):
     if entry.is_file():
         file_names.append(entry.name)
+    # else:
+    #     pahntom_time =
+    #     file_names.append('')
 time_now = str(datetime.datetime.now())
 file_time1 = str(time_now.split('.')[:1])
 file_time = file_time1.replace('[', '').replace(']', '')  # .replace(''', '')
@@ -38,7 +41,10 @@ for i in file_names:
     time_range1 = time_now - clean_name
     time_range = time_range1.total_seconds()/60
     time_ranges.append(time_range)
-last_report = min(time_ranges)
+if time_ranges:
+    last_report = min(time_ranges)
+else:
+    last_report = 10800
 
 for i in range(0,500, 20):
     url2 = f'https://remoteok.com/?&action=get_jobs&offset={i}'
